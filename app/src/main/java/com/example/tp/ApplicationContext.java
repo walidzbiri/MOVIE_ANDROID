@@ -13,6 +13,26 @@ public class ApplicationContext extends Application {
     }
 
     private int movie_id;
+    private String activeFragment;
+
+    public String getActiveFragment() {
+        return activeFragment;
+    }
+
+    public void setActiveFragment(String activeFragment) {
+        this.activeFragment = activeFragment;
+    }
+
+    public String getActiveLanguage() {
+        return activeLanguage;
+    }
+
+    public void setActiveLanguage(String activeLanguage) {
+        this.activeLanguage = activeLanguage;
+    }
+
+    private String activeLanguage;
+
 
     @Override
     public void onCreate(){

@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tp.apiservice.DetailsMovieResponse;
+import com.example.tp.apiservice.Genre;
 import com.example.tp.apiservice.MovieService;
 import com.example.tp.apiservice.PopularMovieResponse;
 import com.squareup.picasso.Picasso;
@@ -41,8 +42,12 @@ public class details_activity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(MovieService.class);
+        Call<DetailsMovieResponse> call=null;
+        if(app.getActiveLanguage()=="FR")
+             call=movieService.getMovieDetail(app.getMovie_id(),"550ebedfa3fe2247c5d7c21a9342b7c0",1,"fr");
+        if(app.getActiveLanguage()=="ENG")
+            call=movieService.getMovieDetail(app.getMovie_id(),"550ebedfa3fe2247c5d7c21a9342b7c0",1,"eng");
 
-        Call<DetailsMovieResponse> call=movieService.getMovieDetail(app.getMovie_id(),"550ebedfa3fe2247c5d7c21a9342b7c0",1);
 
 
         call.enqueue(new Callback<DetailsMovieResponse>() {
@@ -51,8 +56,15 @@ public class details_activity extends AppCompatActivity {
                 DetailsMovieResponse repo_response = (DetailsMovieResponse) response.body();
                 Picasso.get().load("https://image.tmdb.org/t/p/original"+repo_response.getPoster_path()).into(image);
                 overview.setText(repo_response.getOverview());
-                release_date.setText("Release Date: "+repo_response.getRelease_date());
-                genres.setText(repo_response.getGenres().toString());
+                if(app.getActiveLanguage()=="FR")
+                    release_date.setText("Date de sortie: "+repo_response.getRelease_date());
+                if(app.getActiveLanguage()=="ENG")
+                    release_date.setText("Release Date: "+repo_response.getRelease_date());
+                String textForGenre="Genres:\n";
+                for (Genre genre : repo_response.getGenres()) {
+                    textForGenre+="- "+genre.getName()+"\n";
+                }
+                genres.setText(textForGenre);
                 setTitle(repo_response.getTitle());
             }
 

@@ -10,11 +10,11 @@ public interface MovieService {
     public static final String ENDPOINT="https://api.themoviedb.org";
 
     @GET("/3/movie/popular")
-    Call<PopularMovieResponse> getPopularMovies(@Query("api_key") String key,@Query("page") int page);
+    Call<PopularMovieResponse> getPopularMovies(@Query("api_key") String key,@Query("page") int page,@Query("language") String lang);
 
     @GET("/3/movie/upcoming")
-    Call<PopularMovieResponse> getUpcomingMovies(@Query("api_key") String key,@Query("page") int page);
+    Call<PopularMovieResponse> getUpcomingMovies(@Query("api_key") String key,@Query("page") int page,@Query("language") String lang);
 
     @GET("/3/movie/{movie_id}")
-    Call<DetailsMovieResponse> getMovieDetail(@Path("movie_id") int movie_id, @Query("api_key") String key, @Query("page") int page);
+    Call<DetailsMovieResponse> getMovieDetail(@Path("movie_id") int movie_id, @Query("api_key") String key, @Query("page") int page,@Query("language") String lang);
 }

@@ -51,14 +51,14 @@ public class DetailsMovieResponse {
     private List<Genre> genres;
 
     public String getPoster_path() {
-        return poster_path;
+        return backdrop_path;
     }
 
-    public void setPoster_path(String poster_path) {
-        this.poster_path = poster_path;
+    public void setPoster_path(String backdrop_path) {
+        this.backdrop_path = backdrop_path;
     }
 
-    private  String poster_path;
+    private  String backdrop_path;
 
     @Override
     public String toString() {
@@ -68,7 +68,7 @@ public class DetailsMovieResponse {
                 ", overview='" + overview + '\'' +
                 ", release_date='" + release_date + '\'' +
                 ", genres=" + genres +
-                ", poster_path='" + poster_path + '\'' +
+                ", poster_path='" + backdrop_path + '\'' +
                 '}';
     }
 }
